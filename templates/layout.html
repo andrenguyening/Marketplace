@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="{{ url_for('static', filename='layout.css') }}">
+  <head>
+    {% block head %}
+    <title>{% block title %} Pitt Marketplace{% endblock %}</title>
+    {% endblock %}
+  </head>
+  <body>
+    <div id="content">
+      {% block content %}
+      <header>
+        <h1 style="color: #FFB81C">Pitt Marketplace</h1>
+      </header>
+      <nav>
+        <div class="list"><a href="#">Browse</a></div>
+        <div class="list"><a href="#">Sell</a></div>
+      </nav>
+    
+    <section>
+        <p>Welcome to Pitt Marketplace! Explore and discover amazing items.</p>
+    </section>
+      {% endblock %}
+    </div>
+    <div id="footer">
+      {% block footer %}
+      {% endblock %}
+    </div>
+  </body>
+</html>
