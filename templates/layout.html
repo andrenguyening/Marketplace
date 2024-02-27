@@ -6,25 +6,22 @@
     <title>{% block title %} Pitt Marketplace{% endblock %}</title>
     {% endblock %}
   </head>
+  
   <body>
     <div id="content">
-      {% block content %}
       <header>
         <h1 style="color: #FFB81C">Pitt Marketplace</h1>
       </header>
       <nav>
-        <div class="list"><a href="#">Browse</a></div>
-        <div class="list"><a href="#">Sell</a></div>
+        <a href="/market">Browse</a>
+        <a href="#sell">Sell</a>
       </nav>
-    
     <section>
         <p>Welcome to Pitt Marketplace! Explore and discover amazing items.</p>
     </section>
-      {% endblock %}
-    </div>
-    <div id="footer">
-      {% block footer %}
-      {% endblock %}
+    <main>
+      {% block content %}{% endblock %}
+    </main>
     </div>
   </body>
 </html>
