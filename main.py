@@ -1,25 +1,5 @@
-class Listing:
-    def __init__(self, id, author_id, title, desc, price, category):
-        self.id = id
-        self.author_id = author_id
-        self.title = title
-        self.desc = desc
-        self.price = price
-        self.category = category
-        self.status = False
-    
-    def set_status(self, status):
-        self.status = status
-        
-    def get_status(self):
-        return self.status
-    
-    def set_price(self, price):
-        self.price = price
-        
-    def get_price(self):
-        return self.price
-    
+from listings import Listing
+from account import Account
 def main():
     # Creating a sample listing
     listing1 = Listing(1, 123, "Sample Listing", "This is a sample description.", 50.0)
@@ -36,5 +16,8 @@ def main():
     print("Updated Status:", listing1.get_status())
     print("Updated Price:", listing1.get_price())
 
+    # Creating a sample account
+    account1 = Account(1, "123 Main St, Pittsburgh, PA", "admin", "admin")
+    
 if __name__ == "__main__":
     main()
