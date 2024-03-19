@@ -8,8 +8,11 @@ class Listing:
         self.category = category
         self.status = False
     
-    def set_status(self, status):
-        self.status = status
+    def cancel(self):
+        self.status = False
+    
+    def sold(self):
+        self.status = True
         
     def get_status(self):
         return self.status
@@ -19,22 +22,3 @@ class Listing:
         
     def get_price(self):
         return self.price
-    
-def main():
-    # Creating a sample listing
-    listing1 = Listing(1, 123, "Sample Listing", "This is a sample description.", 50.0)
-
-    # Getting initial status and price
-    print("Initial Status:", listing1.get_status())
-    print("Initial Price:", listing1.get_price())
-
-    # Changing status and price
-    listing1.set_status(True)
-    listing1.set_price(60.0)
-
-    # Getting updated status and price
-    print("Updated Status:", listing1.get_status())
-    print("Updated Price:", listing1.get_price())
-
-if __name__ == "__main__":
-    main()
