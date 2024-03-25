@@ -1,51 +1,68 @@
 #Domain model / Business Layer
 class Listing:
     def __init__(self, id, author_id, title, desc, price, category):
-        self.id = id
-        self.author_id = author_id
-        self.title = title
-        self.desc = desc
-        self.price = price
-        self.category = category
-        self.status = False
+        self._id = id
+        self._author_id = author_id
+        self._title = title
+        self._desc = desc
+        self._price = price
+        self._category = category
+        self._status = False
     
     @property
-    def get_status(self):
-        return self.status
-    
+    def status(self):
+        return self._status
+        
     def sold(self):
-        self.status = True
-        
-    def cancel(self):
-        self.status = False
-        
+        if self.status:
+            return "Sold"   
+        elif not self.status:
+            return "Available"
+    
     @property
-    def get_price(self):
-        return self.price
+    def price(self):
+        return self._price
    
+    @price.setter
     def set_price(self, price):
         #check to see if price given is a valid float
         if not isinstance(price, float):
-            raise ValueError("expected type float")
+            raise ValueError("Expected type float")
         else:
-            self.price = price
+            self._price = price
 
-    @property        
-    def get_category(self):
-        return self.category
+    @property
+    def category(self):
+        return self._category
     
-    @property    
-    def get_title(self):
-        return self.title
-
-    @property
-    def get_desc(self):
-        return self.desc
-
-    @property
-    def get_author(self):
-        return self.author
+    @category.setter
+    def set_cat(self, cat):
+        #check to see if price given is a valid string
+        if not isinstance(cat, str):
+            raise ValueError("Expected type str")
+        else:
+            self.category = cat
     
     @property
-    def get_id(self):
-        return self.id
+    def title(self):
+        return self._title
+    
+    @property 
+    def desc(self):
+        return self._desc
+    
+    @desc.setter
+    def set_desc(self, desc):
+        #check to see if price given is a valid string
+        if not isinstance(desc, str):
+            raise ValueError("Expected type str")
+        else:
+            self._desc = desc
+
+    @property
+    def author(self):
+        return self._author_id
+    
+    @property
+    def id(self):
+        return self._id

@@ -6,7 +6,7 @@ from account import Account
 class ListingRepo():
     def get_data(self, database):
         #Connecting to the database
-        conn = sqlite3.connect('data.db')
+        conn = sqlite3.connect(database)
         cursor = conn.cursor()
         #Retrieving the data
         cursor.execute("SELECT * FROM Listing")
@@ -17,19 +17,26 @@ class ListingRepo():
     
 #Presentation
 class ListingView():
-    def __init__(self,listings, rows):
+    def __init__(self, listings):
         self.listings = listings
-        self.rows = rows
     def show(self):
-        for row in self.rows:
-            self.listings.append(Listing(row[0],row[1], row[2], row[3], row[4], row[5]))
-            print(row)
+        for row in self.listings:
+            print(row.id, " ",
+                  row.author, " ", 
+                  row.title, " ", 
+                  row.desc, " ", 
+                  row.price, " ", 
+                  row.category, " ", 
+                  row.status
+                  )
         
 def main():
     listing_data = ListingRepo()
     listings = []
-    view = ListingView(listings, listing_data.get_data('data.db'))
+    for row in listing_data.get_data('data.db'):
+        listings.append(Listing(row[0],row[1], row[2], row[3], row[4], row[5]))
+    view = ListingView(listings)
     view.show()
-
+    
 if __name__ == "__main__":
     main()
