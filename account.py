@@ -4,4 +4,3 @@ class Account:
         self.id = author_id
         self.password = password
         self.address = address
-    
