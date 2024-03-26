@@ -13,7 +13,7 @@ class Listing:
     def status(self):
         return self._status
         
-    def sold(self):
+    def is_sold(self):
         if self.status:
             return "Sold"   
         elif not self.status:
