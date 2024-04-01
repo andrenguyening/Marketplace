@@ -1,8 +1,11 @@
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, session, url_for
 from listings import ListingRepo, Listing
 import sqlite3
 
 app = Flask(__name__)
+
+app.secret_key = 'secret_key'
+
 DATABASE = 'data.db'
 
 def create_connection():
@@ -11,6 +14,51 @@ def create_connection():
 @app.route("/")
 def home():
     return render_template('layout.html')
+
+@app.route('/account', methods=['POST','GET'])
+def account():
+    if 'user' in session:
+        conn = sqlite3.connect('data.db')
+        cursor = conn.cursor()
+        #Retrieving the data
+        cursor.execute("SELECT * FROM Listing WHERE author_id = ?", (session['user'],))
+        rows = cursor.fetchall()
+        listings = []
+        for row in rows:
+            listings.append(Listing(row[0],row[1], row[2], row[3], row[4], row[5]))
+        cursor.close()
+        conn.close()
+        return render_template('account.html', listings = listings)
+    return redirect(url_for('login'))
+
+@app.route('/login', methods=['POST','GET'])
+def login():
+    
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        conn = create_connection()
+        cursor = conn.cursor()
+
+        # Query the database to check if the username and password match
+        cursor.execute("SELECT * FROM Account WHERE author_id = ? AND pass = ?", (username, password))
+        account = cursor.fetchone()
+        conn.close()
+
+        if account:
+            session['user'] = request.form['username']
+            return redirect(url_for('market'))
+        else:
+            return "Invalid username or password."
+    else:
+            return render_template('login.html')
+    
+@app.route('/logout')
+def logout():
+    # remove the username from the session if it's there
+    session.pop('user', None)
+    return redirect(url_for('home'))
 
 @app.route("/market")
 def market():
