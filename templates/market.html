@@ -1,6 +1,12 @@
 {% extends 'layout.html' %}
 {% block content %}
-    <p>this is where the listings will go, we will render the listing using react or sveltekit.</p>
-    <p>we will draw the information for the listings from a NoSQL database table called 'listings'</p>
-    <p>for each listing, render a listing component</p>
+    <div class = "cards"> 
+    {% for listing in listings %}
+    <div class="card">
+        <h4><b>{{ listing.title}}</b></h4>
+        <p>{{ listing.desc }}</p>
+        <p>${{ listing.price }}</p>
+    </div>
+    {% endfor %}  
+    </div>  
 {% endblock %}

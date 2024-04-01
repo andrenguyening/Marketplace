@@ -1,3 +1,4 @@
+import sqlite3
 #Domain model / Business Layer
 class Listing:
     def __init__(self, id, author_id, title, desc, price, category):
@@ -66,3 +67,16 @@ class Listing:
     @property
     def id(self):
         return self._id
+    
+#Data access layer
+class ListingRepo():
+    def get_data(self, database):
+        #Connecting to the database
+        conn = sqlite3.connect(database)
+        cursor = conn.cursor()
+        #Retrieving the data
+        cursor.execute("SELECT * FROM Listing")
+        rows = cursor.fetchall()
+        cursor.close()
+        conn.close()
+        return rows
