@@ -1,17 +1,13 @@
 {% extends 'layout.html' %}
 {% block content %}
-
     <div class = "form">
         <h2>Sell Page</h2>
         <form method="post" action="/sell">
-            <label for="author_id">Name:</label><br>
-            <input type="text" id="author_id" name="user" required><br>
+            <label for="item_title">Item Title:</label><br>
+            <input type="text" id="item_title" name="item_title" required><br>
             
             <label for="desc">Description:</label><br>
             <textarea id="desc" name="desc" required></textarea><br>
-            
-            <label for="item_title">Item Title:</label><br>
-            <input type="text" id="item_title" name="item_title" required><br>
             
             <label for="price">Price:</label><br>
             <input type="text" id="price" name="price" required><br>

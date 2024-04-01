@@ -18,7 +18,7 @@ def home():
 @app.route('/account', methods=['POST','GET'])
 def account():
     if 'user' in session:
-        conn = sqlite3.connect('data.db')
+        conn = create_connection()
         cursor = conn.cursor()
         #Retrieving the data
         cursor.execute("SELECT * FROM Listing WHERE author_id = ?", (session['user'],))
@@ -33,7 +33,7 @@ def account():
 
 @app.route('/login', methods=['POST','GET'])
 def login():
-    
+    #DO NOT STORE USER AND PASS LIKE THIS, JUST FOR PROJECT SIMPLICITY
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -70,14 +70,14 @@ def market():
 
 @app.route('/sell', methods=['POST', 'GET'])
 def sell():
+    if 'user' not in session:
+        return "Need to log in before selling!"
     if request.method == 'POST':
-        author_id = request.form['user']
+        author_id = session['user']
         desc = request.form['desc']
         item_title = request.form['item_title']
         price = request.form['price']
         category = request.form['category']
-        
-        new_listing = Listing(0,author_id,item_title,desc,price,category)
         conn = create_connection()
         cursor = conn.cursor()
         cursor.execute("INSERT INTO Listing (author_id, title, desc, price, category) VALUES (?, ?, ?, ?, ?)", 
