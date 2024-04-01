@@ -43,6 +43,12 @@ footer {
     width: 100%;
 }
 
+.form{
+    margin: auto;
+    width: 75%;
+    padding: 10px;
+}
+
 .cards {
     background: red;
     margin: auto;

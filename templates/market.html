@@ -2,11 +2,14 @@
 {% block content %}
     <div class = "cards"> 
     {% for listing in listings %}
-    <div class="card">
-        <h4><b>{{ listing.title}}</b></h4>
-        <p>{{ listing.desc }}</p>
-        <p>${{ listing.price }}</p>
-    </div>
+    <a href="/"{listing.id}>
+        <div class="card">
+            <h4><b>{{ listing.title }}</b></h4>
+            <p>Listed by: {{ listing.author }}</p>
+            <p>{{ listing.desc }}</p>
+            <p>${{ listing.price }}</p>
+        </div>
+    </a>
     {% endfor %}  
     </div>  
-{% endblock %}
+    {% endblock %}
