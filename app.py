@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect
 from listings import ListingRepo, Listing
 import sqlite3
 
@@ -23,11 +23,12 @@ def market():
 @app.route('/sell', methods=['POST', 'GET'])
 def sell():
     if request.method == 'POST':
-        author_id = request.form('user')
-        desc = request.form('desc')
+        author_id = request.form['user']
+        desc = request.form['desc']
         item_title = request.form['item_title']
         price = request.form['price']
-        category = request.form('category')
+        category = request.form['category']
+        
         new_listing = Listing(0,author_id,item_title,desc,price,category)
         conn = create_connection()
         cursor = conn.cursor()
@@ -35,6 +36,7 @@ def sell():
                     (author_id, item_title, desc, price, category))
         conn.commit()
         conn.close()
+        return redirect("/market")
     else:
         return render_template('sell.html')
 if __name__ == '__main__':
