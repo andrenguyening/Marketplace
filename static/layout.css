@@ -42,3 +42,36 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+.form{
+    margin: auto;
+    width: 75%;
+    padding: 10px;
+}
+
+.cards {
+    margin: auto;
+    width: 75%;
+    padding: 10px;
+}
+
+.card {
+    border-radius: 5px;
+    background-color: white;
+    display: inline-block;
+    box-shadow: 7px 7px 13px 0px rgba(50, 50, 50, 0.22);
+    padding: 30px;
+    margin: 20px;
+    width: 200px;
+    transition: all 0.3s ease-out;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+  }
+  
+  .card p {
+    color: #000000;
+    font-size: 12px;
+  }

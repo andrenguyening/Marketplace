@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Your Listings</h1>
+{% for listing in listings %}
+<a href="/"{listing.id}>
+    <div class="card">
+        <h4><b>{{ listing.title }}</b></h4>
+        <p>Listed by: {{ listing.author }}</p>
+        <p>{{ listing.desc }}</p>
+        <p>${{ listing.price }}</p>
+        <p>Status: {{listing.status}}</p>
+    </div>
+</a>
+{% endfor %} 
+{% endblock %}
