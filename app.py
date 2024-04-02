@@ -7,7 +7,8 @@ def home():
 
 @app.route("/market")
 def market():
-    return render_template('market.html')
+    # get data
+    return render_template('market.html', data=data)
 
 if __name__ == '__main__':
     app.run(debug=True)

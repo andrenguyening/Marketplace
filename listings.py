@@ -13,11 +13,15 @@ class Listing:
     def status(self):
         return self._status
         
-    def sold(self):
-        if self.status:
-            return "Sold"   
-        elif not self.status:
+    def sold_label(self):
+        # business logic
+        if self._status:
+            return "Sold"   #show sold to user
+        elif not self._status:
             return "Available"
+
+    def is_sold(self):
+        return self._status == 1
     
     @property
     def price(self):

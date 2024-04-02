@@ -27,7 +27,7 @@ class ListingView():
                   row.desc, " ", 
                   row.price, " ", 
                   row.category, " ", 
-                  row.status
+                  row.sold_label()
                   )
         
 def main():
