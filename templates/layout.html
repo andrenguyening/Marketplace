@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <link rel="stylesheet" href = "layout.css">
-  ### href="{{ url_for('static', filename='layout.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='layout.css') }}">
   <head>
     {% block head %}
     <title>{% block title %} Pitt Marketplace{% endblock %}</title>
