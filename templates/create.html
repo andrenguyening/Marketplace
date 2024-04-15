@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div class = "form">
+        <h2>Create an Account</h2>
+        <form method="post" action="/create">
+            <label for="user">Create a username:</label><br>
+            <input type="text" id="user" name="user" required><br>
+            <label for="pass">Create a password: </label><br>
+            <input type="password" id="pass" name="pass" required><br>
+            <input type="submit" value="Create account">
+        </form>
+    </div>
+{% endblock %}

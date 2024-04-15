@@ -73,6 +73,7 @@ def sell():
     if 'user' not in session:
         return "Need to log in before selling!"
     if request.method == 'POST':
+        print('hello')
         author_id = session['user']
         desc = request.form['desc']
         item_title = request.form['item_title']
@@ -84,8 +85,28 @@ def sell():
                     (author_id, item_title, desc, price, category))
         conn.commit()
         conn.close()
-        return redirect("/market")
+        return redirect(url_for('market'))
     else:
         return render_template('sell.html')
+    
+    
+@app.route('/create', methods = ['POST','GET'])
+def create():
+    if request.method == 'POST':
+        print('post')
+        author_id = request.form['user']
+        password = request.form['pass']
+        conn = create_connection()
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO Account (author_id, pass) VALUES (?, ?)", 
+                    (author_id, password))
+        conn.commit()
+        conn.close()
+        return redirect(url_for('login'))
+    else:
+        print('create page')
+        return render_template('create.html')
+    
+
 if __name__ == '__main__':
     app.run(debug=True)
