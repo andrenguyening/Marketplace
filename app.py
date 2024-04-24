@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, redirect, session, url_for
 from listings import ListingRepo, Listing
+from account import Account
 import sqlite3
 
 app = Flask(__name__)
@@ -96,6 +97,10 @@ def create():
         print('post')
         author_id = request.form['user']
         password = request.form['pass']
+        try:
+            acc = Account(0,author_id,password)
+        except:
+            print('Invalid params for account.')
         conn = create_connection()
         cursor = conn.cursor()
         cursor.execute("INSERT INTO Account (author_id, pass) VALUES (?, ?)", 
@@ -104,7 +109,6 @@ def create():
         conn.close()
         return redirect(url_for('login'))
     else:
-        print('create page')
         return render_template('create.html')
     
 
